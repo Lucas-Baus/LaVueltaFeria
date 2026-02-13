@@ -1,0 +1,198 @@
+:root {
+  --primary: #000;
+  --accent: #25d366;
+  --bg: #f8f9fa;
+}
+
+/* Reset básico para evitar espacios fantasma */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-principal {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* NAVBAR - Ocupa todo el ancho */
+.navbar {
+  background: white;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.nav-content {
+  max-width: 1400px; /* Aumentamos el ancho máximo */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+/* HERO / FILTROS */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  width: 100%;
+}
+
+.filtros-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-filtro {
+  padding: 10px 22px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-filtro.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* LA GRILLA - El arreglo clave */
+.main-content {
+  width: 100%;
+  max-width: 1500px; /* Casi todo el ancho de la pantalla */
+  margin: 40px auto;
+  padding: 0 40px; /* Margen a los costados */
+}
+
+.grid-productos {
+  display: grid;
+  /* Esta línea fuerza a que entren más objetos en línea en PC */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+  gap: 30px;
+  width: 100%;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 15px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card-img {
+  height: 340px;
+  position: relative;
+  background-color: #eee;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--accent);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.card-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo-prod {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  height: 2.4em;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.specs {
+  display: flex;
+  justify-content: space-between;
+  background: #f8f8f8;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.label {
+  font-size: 0.65rem;
+  color: #999;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.value {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.precio {
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin: 10px 0 20px;
+}
+
+.btn-whatsapp {
+  margin-top: auto;
+  background: var(--accent);
+  color: white;
+  text-align: center;
+  padding: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+.btn-whatsapp:hover {
+  opacity: 0.9;
+}
+
+/* Media Query para pantallas extra grandes */
+@media (min-width: 1600px) {
+  .grid-productos {
+    grid-template-columns: repeat(5, 1fr); /* Fuerza 5 columnas en monitores muy grandes */
+  }
+}
