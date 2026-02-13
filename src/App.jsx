@@ -3,20 +3,20 @@ import { productos } from './productos';
 import './App.css';
 
 const TiendaRopa = () => {
-  // CONFIGURACIÓN: Reemplaza con tu número de WhatsApp (sin el +)
+
   const WHATSAPP_NUMBER = "5491166107222"; 
 
   // ESTADO para el filtro de marcas
   const [marcaSeleccionada, setMarcaSeleccionada] = useState("Todas");
 
   // LÓGICA DE FILTROS:
-  // 1. Extraemos marcas únicas, quitamos las que son "-" y ordenamos alfabéticamente
+  // Extraemos marcas únicas, quitamos "-" y vacíos, y ordenamos
   const marcasUnicas = [
     "Todas", 
     ...new Set(productos.map(p => p.marca).filter(m => m && m !== "-"))
   ].sort();
 
-  // 2. Filtramos los productos según la marca elegida
+  // Filtramos los productos según la marca elegida
   const productosFiltrados = marcaSeleccionada === "Todas" 
     ? productos 
     : productos.filter(p => p.marca === marcaSeleccionada);
@@ -28,16 +28,14 @@ const TiendaRopa = () => {
         <div className="nav-content">
           <h1 className="logo">LA VUELTA <span className="logo-alt">FERIA</span></h1>
           <div className="contador-items">
-            {productosFiltrados.length} productos encontrados
+            {productosFiltrados.length} items
           </div>
         </div>
       </nav>
 
-      {/* ENCABEZADO Y FILTROS */}
+      {/* FILTROS */}
       <header className="hero">
-        <h2>Catálogo de Ropa</h2>
-        <p>Filtrar por marca:</p>
-        
+        <h2>Catálogo 2026</h2>
         <div className="filtros-container">
           {marcasUnicas.map(marca => (
             <button 
@@ -51,25 +49,21 @@ const TiendaRopa = () => {
         </div>
       </header>
 
-      {/* GRILLA DE PRODUCTOS */}
+      {/* GRILLA DE PRODUCTOS RESPONSIVE */}
       <main className="main-content">
         <div className="grid-productos">
           {productosFiltrados.map((prod) => (
             <div key={prod.id} className="card">
               <div className="card-img">
-                {/* Badge si tiene etiqueta */}
                 {prod.etiqueta?.toLowerCase() === "si" && (
-                  <span className="badge">¡Nuevo!</span>
+                  <span className="badge">NUEVO</span>
                 )}
-                
-                {/* Imagen del producto: debe estar en public/images/foto_X.jpg */}
                 <img 
-                  src={`/images/foto_${prod.id}.jpeg`} 
+                  src={`/images/foto_${prod.id}.jpg`} 
                   alt={prod.nombre}
                   loading="lazy"
                   onError={(e) => {
                     e.target.src = `https://via.placeholder.com/300x400?text=Foto+${prod.id}`;
-                    e.target.onerror = null; // Evita bucle infinito si falla el placeholder
                   }}
                 />
               </div>
@@ -80,7 +74,6 @@ const TiendaRopa = () => {
                 </span>
                 <h3 className="titulo-prod">{prod.nombre}</h3>
                 
-                {/* Datos adicionales de la card */}
                 <div className="specs">
                   <div className="spec-item">
                     <span className="label">Talle</span>
@@ -98,14 +91,13 @@ const TiendaRopa = () => {
                   ${Number(prod.precio).toLocaleString('es-AR')}
                 </p>
                 
-                {/* Link dinámico a WhatsApp */}
                 <a 
                   href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola! Me interesa el producto ${prod.id}: ${prod.nombre} (Talle ${prod.talle})`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp"
                 >
-                  Me interesa este producto
+                  Me interesa
                 </a>
               </div>
             </div>
@@ -113,13 +105,9 @@ const TiendaRopa = () => {
         </div>
       </main>
 
-      {/* FOOTER */}
       <footer className="footer">
-        <p><strong>CATU SHOP</strong></p>
-        <p>Selección de ropa exclusiva</p>
-        <p style={{fontSize: '0.8rem', color: '#888', marginTop: '10px'}}>
-          © 2024 - Todos los derechos reservados
-        </p>
+        <p><strong>LA VUELTA FERIA</strong></p>
+        <p>© 2026 - Buenos Aires, Argentina</p>
       </footer>
     </div>
   );
