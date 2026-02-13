@@ -1,108 +1,259 @@
 :root {
-  --primary: #000;
+  --primary: #000000;
   --accent: #25d366;
-  --bg: #f9f9f9;
+  --bg: #f4f4f7;
+  --text-main: #1a1a1a;
+  --text-muted: #666666;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
 
 .container-principal {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background-color: var(--bg);
-  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* NAVBAR */
 .navbar {
-  background: white;
-  padding: 1.2rem 0;
-  border-bottom: 1px solid #eee;
+  background-color: #ffffff;
+  padding: 1rem 0;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 100;
+  border-bottom: 1px solid #e5e5e5;
 }
+
 .nav-content {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 20px;
 }
-.logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
+
+.logo { 
+  font-weight: 800; 
+  letter-spacing: -1px; 
+  font-size: 1.5rem; 
+  color: var(--primary);
+}
+
 .logo-alt { color: var(--accent); }
 
-/* FILTROS */
-.hero { text-align: center; padding: 40px 20px; background: white; }
+.contador-items {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* HERO / FILTROS */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+.hero h2 { 
+  font-size: 2rem; 
+  margin-bottom: 15px; 
+  color: var(--primary);
+}
+
 .filtros-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
-  max-width: 1200px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .btn-filtro {
-  padding: 8px 18px;
+  padding: 10px 20px;
   border: 1px solid #ddd;
   background: white;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: 0.2s;
+  font-weight: 500;
+  color: var(--text-main);
+  transition: all 0.2s ease;
 }
-.btn-filtro.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+.btn-filtro.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
 
 /* GRILLA RESPONSIVE */
 .main-content {
   max-width: 1400px;
-  margin: 40px auto;
-  padding: 0 30px;
+  margin: 30px auto;
+  padding: 0 20px 60px;
 }
+
 .grid-productos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 25px;
 }
 
 /* CARDS */
 .card {
-  background: white;
-  border-radius: 12px;
+  background: #ffffff;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s;
 }
-.card:hover { transform: translateY(-5px); }
-.card-img { height: 320px; position: relative; background: #eee; }
-.card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-img {
+  position: relative;
+  height: 350px;
+  background-color: #f0f0f0;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .badge {
-  position: absolute; top: 10px; right: 10px;
-  background: var(--accent); color: white;
-  padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: bold;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--accent);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
-.card-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-.categoria { font-size: 0.7rem; color: #888; text-transform: uppercase; }
-.titulo-prod { font-size: 1rem; margin: 8px 0; height: 2.5em; overflow: hidden; line-height: 1.2; }
+/* INFORMACIÓN DE LA CARD */
+.card-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
 
+.categoria {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.titulo-prod {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-bottom: 15px;
+  height: 2.4em;
+  overflow: hidden;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* CUADRO DE TALLE Y ESTADO (Corregido para Mobile) */
 .specs {
-  display: flex; justify-content: space-between;
-  background: #f8f8f8; padding: 10px; border-radius: 8px; margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  background: #f8f8f8; /* Fondo sutil para que el texto destaque */
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
-.label { font-size: 0.6rem; color: #999; display: block; }
-.value { font-weight: bold; font-size: 0.85rem; }
 
-.precio { font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; }
+.spec-item {
+  display: flex;
+  flex-direction: column;
+}
 
+.label {
+  font-size: 0.65rem;
+  color: #666666 !important; /* Gris oscuro forzado */
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1a !important; /* Negro forzado */
+}
+
+.precio {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+/* BOTÓN WHATSAPP */
 .btn-whatsapp {
-  background: var(--accent); color: white; text-align: center;
-  padding: 12px; border-radius: 8px; text-decoration: none;
-  font-weight: bold; margin-top: auto;
+  display: block;
+  background: var(--accent);
+  color: white !important; /* Asegura que el texto sea blanco */
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: opacity 0.2s;
+  margin-top: auto;
 }
 
-.footer { padding: 50px; text-align: center; background: white; border-top: 1px solid #eee; }
+.btn-whatsapp:hover {
+  opacity: 0.9;
+}
+
+/* FOOTER */
+.footer {
+  background: white;
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid #eee;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* MEDIA QUERY PARA MÓVILES */
+@media (max-width: 600px) {
+  .hero h2 { font-size: 1.6rem; }
+  .grid-productos {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* 2 columnas en móviles pequeños */
+    gap: 15px;
+    padding: 0 10px;
+  }
+  .card-img { height: 220px; }
+  .card-info { padding: 12px; }
+  .titulo-prod { font-size: 0.9rem; }
+  .precio { font-size: 1.2rem; }
+  .btn-filtro { padding: 8px 15px; font-size: 0.8rem; }
+}
